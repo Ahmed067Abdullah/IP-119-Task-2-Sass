@@ -192,7 +192,7 @@ body.main .nav-container {
   color: #e5e5e5;
   background-color: transparent;
   height: 70px;
-  z-index: 10;
+  z-index: 20;
   -webkit-transition: 0.5s linear;
   transition: 0.5s linear;
 }
@@ -411,6 +411,48 @@ body.main .content .banner-container .banner-show-details .banner-details {
   font-size: 20px;
 }
 
+body.main .content .banner-container .age-res {
+  position: absolute;
+  bottom: 300px;
+  right: 0;
+  color: #e5e5e5;
+  font-size: 20px;
+  border-left: 3px solid #e5e5e5;
+  padding: 10px 60px 10px 15px;
+  background: rgba(51, 51, 51, 0.6);
+}
+
+body.main .content .banner-container .volume {
+  position: absolute;
+  bottom: 300px;
+  right: 130px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+  border: 1px solid #e5e5e5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: linear 0.2s;
+  transition: linear 0.2s;
+  font-size: 19px;
+}
+
+body.main .content .banner-container .volume:hover {
+  width: 43px;
+  height: 43px;
+  bottom: 297px;
+  right: 128px;
+  font-size: 21px;
+}
+
 body.main .content .popular-container {
   position: absolute;
   top: 710px;
@@ -420,19 +462,27 @@ body.main .content .popular-container {
 body.main .content .popular-container h2 {
   color: white;
   margin-left: 60px;
-  margin-bottom: 6px;
+  margin-bottom: -60px;
 }
 
 body.main .content .popular-container .popular-list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  overflow: hidden;
+  padding-top: 68px;
 }
 
 body.main .content .popular-container .popular-list .popular-list-item {
-  width: 260px;
+  width: 262px;
   margin: 0 2px;
   height: 137px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  position: relative;
+  -webkit-transition: 0.3s linear;
+  transition: 0.3s linear;
 }
 
 body.main .content .popular-container .popular-list .popular-list-item img {
@@ -440,40 +490,148 @@ body.main .content .popular-container .popular-list .popular-list-item img {
   height: 100%;
 }
 
-body.main .content .popular-container .over-lay-left {
-  position: absolute;
-  top: 100px;
-  left: 100px;
-  background-color: rgba(10, 10, 10, 0.85);
+body.main .content .popular-container .popular-list .popular-list-item:hover {
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  height: 274px;
+  -webkit-transform: translateY(-68px);
+          transform: translateY(-68px);
+}
+
+body.main .content .popular-container .popular-list .arrow {
+  width: 50px;
+  height: 137px;
+  background: rgba(51, 51, 51, 0.6);
+  color: white;
+  font-size: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body.main .content .popular-container .popular-list .arrow i {
+  display: none;
+  -webkit-transition: 0.2s linear;
+  transition: 0.2s linear;
+  -webkit-transform: scale(1.2, 1.8);
+          transform: scale(1.2, 1.8);
+}
+
+body.main .content .popular-container .popular-list .arrow:hover i {
+  -webkit-transform: scale(1.4, 2.2);
+          transform: scale(1.4, 2.2);
+}
+
+body.main .content .popular-container .popular-list:hover {
+  cursor: pointer;
+}
+
+body.main .content .popular-container .popular-list:hover i {
+  display: initial;
+}
+
+body.main .content .popular-container .popular-list:hover .arrow {
+  background: rgba(10, 10, 10, 0.85);
+}
+
+body.main .trending-area {
+  width: 100%;
 }
 
 body.main .trending-area h2 {
   color: white;
-  margin: 60px 60px 6px;
+  margin: 60px 60px -60px;
 }
 
-body.main .trending-area .popular-list {
+body.main .trending-area .trending-list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  overflow: hidden;
+  padding-top: 68px;
+  padding-bottom: 68px;
 }
 
-body.main .trending-area .popular-list .popular-list-item {
-  width: 260px;
+body.main .trending-area .trending-list .trending-list-item {
+  width: 262px;
   margin: 0 2px;
   height: 137px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  position: relative;
+  -webkit-transition: 0.3s linear;
+  transition: 0.3s linear;
+  z-index: 1;
 }
 
-body.main .trending-area .popular-list .popular-list-item img {
+body.main .trending-area .trending-list .trending-list-item img {
   width: 100%;
   height: 100%;
 }
 
-body.main .trending-area .over-lay-left {
-  position: absolute;
-  top: 100px;
-  left: 100px;
-  background-color: rgba(10, 10, 10, 0.85);
+body.main .trending-area .trending-list .trending-list-item:hover {
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  height: 274px;
+  -webkit-transform: translateY(-68px);
+          transform: translateY(-68px);
+  margin-bottom: -120px;
+  z-index: 10;
+}
+
+body.main .trending-area .trending-list .arrow {
+  width: 50px;
+  height: 137px;
+  background: rgba(51, 51, 51, 0.6);
+  color: white;
+  font-size: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body.main .trending-area .trending-list .arrow i {
+  display: none;
+  -webkit-transition: 0.2s linear;
+  transition: 0.2s linear;
+  -webkit-transform: scale(1.2, 1.8);
+          transform: scale(1.2, 1.8);
+}
+
+body.main .trending-area .trending-list .arrow:hover i {
+  -webkit-transform: scale(1.4, 2.2);
+          transform: scale(1.4, 2.2);
+}
+
+body.main .trending-area .trending-list:hover {
+  cursor: pointer;
+}
+
+body.main .trending-area .trending-list:hover i {
+  display: initial;
+}
+
+body.main .trending-area .trending-list:hover .arrow {
+  background: rgba(10, 10, 10, 0.85);
 }
 
 body.main .featured-show-area-wrapper {
@@ -575,25 +733,96 @@ body.main .featured-show-area-wrapper .featured-show-area .featured-show-details
   font-size: 20px;
 }
 
+body.main .originals-area {
+  width: 100%;
+}
+
 body.main .originals-area h2 {
   color: white;
-  margin: 0px 0px 6px 60px;
+  margin: 0px 0px 6px -60px;
 }
 
 body.main .originals-area .originals-list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  overflow: hidden;
+  padding-top: 68px;
+  padding-bottom: 68px;
 }
 
 body.main .originals-area .originals-list .originals-list-item {
-  width: 260px;
+  width: 262px;
+  height: 630px;
   margin: 0 2px;
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+  position: relative;
+  -webkit-transition: 0.3s linear;
+  transition: 0.3s linear;
+  z-index: 1;
 }
 
 body.main .originals-area .originals-list .originals-list-item img {
   width: 100%;
   height: 100%;
+}
+
+body.main .originals-area .originals-list .originals-list-item:hover {
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
+  -webkit-box-flex: 5;
+      -ms-flex: 5;
+          flex: 5;
+  height: 50%;
+  -webkit-transform: translateY(-40px);
+          transform: translateY(-40px);
+  margin-bottom: -120px;
+  height: 700px;
+  z-index: 10;
+}
+
+body.main .originals-area .originals-list .arrow {
+  width: 50px;
+  height: 630px;
+  background: rgba(51, 51, 51, 0.6);
+  color: white;
+  font-size: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body.main .originals-area .originals-list .arrow i {
+  display: none;
+  -webkit-transition: 0.2s linear;
+  transition: 0.2s linear;
+  -webkit-transform: scale(1.2, 1.8);
+          transform: scale(1.2, 1.8);
+}
+
+body.main .originals-area .originals-list .arrow:hover i {
+  -webkit-transform: scale(1.4, 2.2);
+          transform: scale(1.4, 2.2);
+}
+
+body.main .originals-area .originals-list:hover {
+  cursor: pointer;
+}
+
+body.main .originals-area .originals-list:hover i {
+  display: initial;
+}
+
+body.main .originals-area .originals-list:hover .arrow {
+  background: rgba(10, 10, 10, 0.85);
 }
 
 body.main footer {
