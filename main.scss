@@ -1,24 +1,142 @@
-$background-color: #141414;
-$user-card-bg-color: #1f1f1f;
-$darken: #e5e5e5;
-$user-name-color: grey;
-$logo-color: #e50914;
-$nav-item-default-color: #e5e5e5;
-$nav-item-hover-color: #aeaeae;
-$dark-transparent-bg: rgba(10, 10, 10, 0.85);
-$light-transparent-bg: rgba(51, 51, 51, 0.6);
-$match-color: #46d369;
+@import "variables";
+@import "mixins";
 
-@mixin reset {
-  padding: 0;
-  margin: 0;
+html {
+  height: 100%;
 }
 
-@mixin showDetails($area) {
-  .#{$area}-show-details {
-    position: absolute;
-    top: 250px;
-    left: 70px;
+body.main {
+  @include reset;
+  background-color: $background-color;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.content {
+  width: 100%;
+}
+
+.nav-container {
+  @include flex($align-items: center);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-size: 14px;
+  color: $nav-item-default-color;
+  background-color: transparent;
+  height: 70px;
+  z-index: 20;
+  transition: 0.5s linear;
+  span {
+    margin: 0 10px;
+    cursor: pointer;
+    transition: 0.2s linear;
+    &:hover {
+      color: $nav-item-hover-color;
+    }
+    &:first-child {
+      text-transform: uppercase;
+      color: $logo-color;
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0 30px;
+    }
+    &:nth-child(2) {
+      color: white;
+      font-weight: bold;
+    }
+    &:last-child {
+      margin-right: auto;
+    }
+  }
+}
+
+.options {
+  margin: 0 30px 0 auto;
+
+  @include flex($align-items: center);
+  font-size: 16px;
+  & * {
+    margin: 0 10px;
+    cursor: pointer;
+  }
+}
+
+.profile-options {
+  @include flex($align-items: center);
+  position: relative;
+  &:hover .profile-dropdown {
+    visibility: visible;
+  }
+}
+
+.profile-dropdown {
+  visibility: hidden;
+  width: 170px;
+  background-color: $dark-transparent-bg;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  @include absolute($top: 130%, $left: -40%);
+  z-index: 1;
+  margin-left: -60px;
+  @include flex($direction: column);
+
+  border: 0.1px solid $user-name-color;
+  &::after {
+    content: "";
+    @include absolute($right: 21%, $bottom: 100%);
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+  }
+  .nav-user-container {
+    height: 35px;
+    width: 50px;
+    @include flex($align-items: center);
+    margin: 5px 0;
+    img {
+      height: 100%;
+      width: 70%;
+    }
+  }
+  .profiles-manage {
+    box-sizing: border-box;
+    padding: 15px 10px;
+    text-align: left;
+    width: 100%;
+    justify-self: flex-start;
+    margin: auto 0;
+    border-bottom: 0.5px solid $user-name-color;
+  }
+  p {
+    margin: 5px 10px;
+    text-align: left;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .account {
+    margin-top: 15px;
+  }
+}
+
+.nav-image-container {
+  width: 35px;
+  height: 35px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.banner-container {
+  height: 900px;
+  width: 100%;
+  position: relative;
+  .banner-show-details {
+    @include absolute($top: 250px, $left: 70px);
     img {
       width: 600px;
       height: 240px;
@@ -27,7 +145,7 @@ $match-color: #46d369;
       font-size: 18px;
       color: white;
     }
-    .#{$area}-buttons-area {
+    .banner-buttons-area {
       color: white;
       font-size: 18px;
       font-weight: bold;
@@ -51,676 +169,365 @@ $match-color: #46d369;
         }
       }
     }
-    .#{$area}-details {
+    .banner-details {
       width: 550px;
       color: white;
       line-height: 30px;
       font-size: 20px;
     }
   }
+
+  .age-res {
+    @include absolute($right: 0px, $bottom: 300px);
+    color: $nav-item-default-color;
+    font-size: 20px;
+    border-left: 3px solid $nav-item-default-color;
+    padding: 10px 60px 10px 15px;
+    background: $light-transparent-bg;
+  }
+  .volume {
+    @include absolute($right: 130px, $bottom: 300px);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    border: 1px solid $nav-item-default-color;
+    @include flex($justify-content: center, $align-items: center);
+
+    transition: linear 0.2s;
+    font-size: 19px;
+    &:hover {
+      width: 43px;
+      height: 43px;
+      bottom: 297px;
+      right: 128px;
+      font-size: 21px;
+    }
+  }
 }
 
-html {
+.popular-container {
+  @include absolute($top: 710px);
+  width: 100%;
+  h2 {
+    color: white;
+    margin-left: 60px;
+    margin-bottom: -60px;
+  }
+  .popular-list {
+    @include flex();
+    overflow: hidden;
+    padding-top: 68px;
+    .popular-list-item {
+      width: 262px;
+      margin: 0 2px;
+      height: 137px;
+      flex: 1;
+      position: relative;
+      transition: 0.3s linear;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      &:hover {
+        transition-delay: 0.5s;
+        flex: 2;
+        height: 274px;
+        transform: translateY(-68px);
+      }
+      &:hover .hover-content {
+        transition-delay: 0.7s;
+        opacity: 1;
+      }
+    }
+    .arrow {
+      width: 50px;
+      height: 137px;
+      background: $light-transparent-bg;
+      color: white;
+      font-size: 20px;
+      @include flex($justify-content: center, $align-items: center);
+      i {
+        display: none;
+        transition: 0.2s linear;
+        transform: scale(1.2, 1.8);
+      }
+      &:hover i {
+        transform: scale(1.4, 2.2);
+      }
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    &:hover i {
+      display: initial;
+    }
+    &:hover .arrow {
+      background: $dark-transparent-bg;
+    }
+  }
+}
+
+.trending-area {
+  width: 100%;
+  h2 {
+    color: white;
+    margin: 60px 60px -60px;
+  }
+  .trending-list {
+    @include flex();
+    overflow: hidden;
+    padding-top: 68px;
+    padding-bottom: 68px;
+    .trending-list-item {
+      width: 262px;
+      margin: 0 2px;
+      height: 137px;
+      flex: 1;
+      position: relative;
+      transition: 0.3s linear;
+      z-index: 1;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      &:hover {
+        transition-delay: 0.5s;
+        flex: 2;
+        height: 274px;
+        transform: translateY(-68px);
+        margin-bottom: -120px;
+        z-index: 10;
+      }
+      &:hover .hover-content {
+        transition-delay: 0.7s;
+        opacity: 1;
+      }
+    }
+    .arrow {
+      width: 50px;
+      height: 137px;
+      background: $light-transparent-bg;
+      color: white;
+      font-size: 20px;
+      @include flex($justify-content: center, $align-items: center);
+      i {
+        display: none;
+        transition: 0.2s linear;
+        transform: scale(1.2, 1.8);
+      }
+      &:hover i {
+        transform: scale(1.4, 2.2);
+      }
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    &:hover i {
+      display: initial;
+    }
+    &:hover .arrow {
+      background: $dark-transparent-bg;
+    }
+  }
+}
+
+.featured-show-area-wrapper {
+  width: 100%;
+  position: relative;
+  background-size: cover;
+  height: 600px;
+  background: linear-gradient(
+      0deg,
+      #141414 0%,
+      rgba(10, 10, 10, 0.75) 50%,
+      rgba(20, 20, 20, 1) 100%
+    ),
+    url("assets/images/featured-bg.webp");
+}
+
+.featured-show-area {
+  @include flex();
+  width: 92%;
+  margin: 0 auto;
   height: 100%;
 }
 
-body.landing {
-  background-color: $background-color;
-  font-family: Helvetica, Arial, sans-serif;
-  height: 90%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.featured-video-container {
+  width: 58%;
+  height: 100%;
+  z-index: 1;
+  video {
+    height: 100%;
+    width: 100%;
+  }
+}
+.featured-show-details-container {
+  width: 32%;
   position: relative;
+}
 
-  .logo-container {
-    top: 10px;
-    left: 50px;
-    cursor: pointer;
-    a {
-      font-size: 2vw;
-      font-weight: bold;
-      text-transform: uppercase;
-      color: $logo-color;
-      text-decoration: none;
-    }
-    position: absolute;
-    @media (max-width: 968px) {
-      top: 0;
-      left: 3%;
-      font-size: 22px;
-    }
+.featured-show-details {
+  @include absolute($top: 120px, $left: 60px);
+  img {
+    width: 400px;
+    height: 150px;
   }
-  p {
-    color: white;
-    font-size: 3.5vw;
-    text-align: center;
-    @media (max-width: 800px) {
-      & {
-        font-size: 30px;
-      }
-    }
-  }
-  .users-section {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 90%;
-    .user-area {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0px 10px 0;
-      @media (max-width: 594px) {
-        margin-top: 15px;
-      }
-      .user-img-area {
-        height: 10vw;
-        width: 10vw;
-        max-height: 200px;
-        max-width: 200px;
-        min-height: 84px;
-        min-width: 84px;
-        box-sizing: border-box;
-        border: 4px solid $user-card-bg-color;
-        img {
-          width: 100%;
-          height: 100%;
-        }
-      }
-      .user-name-area {
-        margin-top: 10px;
-        font-size: 1.3vw;
-        color: $user-name-color;
-        @media (max-width: 768px) {
-          font-size: 14px;
-        }
-      }
-      &:hover .user-img-area {
-        border-color: white;
-      }
-      &:hover .user-name-area {
-        color: white;
-      }
-    }
-  }
-  .manage-button {
-    padding: 0;
-    border: 1px solid grey;
-    margin-top: 100px;
-    width: 215px;
-    color: grey;
-    height: 25px;
-    padding: 0.5em 1.5em;
-    letter-spacing: 2px;
-    cursor: pointer;
-    font-size: 1.2em;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+.watch-para {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+}
+.featured-buttons-area {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  span {
+    padding: 15px 40px;
+    margin-left: 8px;
+    display: inline-block;
+    background-color: rgba(51, 51, 51, 0.4);
+    border-radius: 3px;
     &:hover {
-      border-color: white;
+      cursor: pointer;
+      color: black;
+      background-color: white;
+      transform: scale(1.05);
+    }
+    &:first-child:hover {
+      transition: transform 0.1s linear 0.2s;
+    }
+    i {
+      margin-right: 10px;
+    }
+  }
+}
+.featured-details {
+  width: 400px;
+  color: white;
+  line-height: 30px;
+  font-size: 20px;
+}
+
+.originals-area {
+  width: 100%;
+  margin-top: 20px;
+  h2 {
+    color: white;
+    margin: 0px 0px -60px 60px;
+  }
+
+  .originals-list {
+    @include flex();
+    overflow: hidden;
+    padding-top: 68px;
+    padding-bottom: 68px;
+    .originals-list-item {
+      width: 262px;
+      height: 630px;
+      margin: 0 2px;
+      flex: 4;
+      position: relative;
+      transition: 0.3s linear;
+      z-index: 1;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      &:hover {
+        transition-delay: 0.5s;
+        flex: 5;
+        height: 50%;
+        transform: translateY(-40px);
+        margin-bottom: -120px;
+        height: 700px;
+        z-index: 10;
+      }
+      .hover-content {
+        bottom: 20px;
+      }
+      &:hover .hover-content {
+        transition-delay: 0.7s;
+        opacity: 1;
+      }
+    }
+    .arrow {
+      width: 50px;
+      height: 630px;
+      background: $light-transparent-bg;
       color: white;
+      font-size: 20px;
+      @include flex($justify-content: center, $align-items: center);
+      i {
+        display: none;
+        transition: 0.2s linear;
+        transform: scale(1.2, 1.8);
+      }
+      &:hover i {
+        transform: scale(1.4, 2.2);
+      }
     }
-    @media (max-width: 768px) {
-      width: 168px;
-      font-size: 0.9em;
-      height: 17px;
+    &:hover {
+      cursor: pointer;
     }
-    @media (max-width: 365px) {
-      width: 145px;
-      font-size: 0.75em;
-      height: 14px;
+    &:hover i {
+      display: initial;
+    }
+    &:hover .arrow {
+      background: $dark-transparent-bg;
     }
   }
 }
 
-body.main {
-  @include reset;
-  background-color: $background-color;
-  font-family: Helvetica, Arial, sans-serif;
-  .nav-container {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    font-size: 14px;
-    color: $nav-item-default-color;
-    background-color: transparent;
-    height: 70px;
-    z-index: 20;
-    transition: 0.5s linear;
-    span {
+footer {
+  padding-top: 80px;
+  @include flex($align-items: center, $direction: column);
+  color: $user-name-color;
+  .socials {
+    align-self: flex-start;
+    margin-left: 275px;
+    margin-bottom: 5px;
+    & * {
+      font-size: 30px;
       margin: 0 10px;
-      cursor: pointer;
-      transition: 0.2s linear;
-      &:hover {
-        color: $nav-item-hover-color;
-      }
-      &:first-child {
-        text-transform: uppercase;
-        color: $logo-color;
-        font-size: 24px;
-        font-weight: bold;
-        margin: 0 30px;
-      }
-      &:nth-child(2) {
-        color: white;
-        font-weight: bold;
-      }
-      &:last-child {
-        margin-right: auto;
-      }
-    }
-    .options {
-      margin: 0 30px 0 auto;
-      display: flex;
-      align-items: center;
-      font-size: 16px;
-      & * {
-        margin: 0 10px;
-        cursor: pointer;
-      }
-      .profile-options {
-        display: flex;
-        align-items: center;
-        position: relative;
-        .nav-image-container {
-          width: 35px;
-          height: 35px;
-          img {
-            width: 100%;
-            height: 100%;
-          }
-        }
-        .profile-dropdown {
-          visibility: hidden;
-          width: 170px;
-          background-color: $dark-transparent-bg;
-          color: #fff;
-          text-align: center;
-          padding: 5px 0;
-          position: absolute;
-          z-index: 1;
-          top: 130%;
-          left: -40%;
-          margin-left: -60px;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          border: 0.1px solid $user-name-color;
-          &::after {
-            content: "";
-            position: absolute;
-            bottom: 100%;
-            right: 21%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: transparent transparent white transparent;
-          }
-          .nav-user-container {
-            height: 35px;
-            width: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            margin: 5px 0;
-            img {
-              height: 100%;
-              width: 70%;
-            }
-          }
-          .profiles-manage {
-            box-sizing: border-box;
-            padding: 15px 10px;
-            text-align: left;
-            width: 100%;
-            justify-self: flex-start;
-            margin: auto 0;
-            border-bottom: 0.5px solid $user-name-color;
-          }
-          p {
-            margin: 5px 10px;
-            &:hover {
-              text-decoration: underline;
-            }
-          }
-          .account {
-            margin-top: 15px;
-          }
-        }
-
-        &:hover .profile-dropdown {
-          visibility: visible;
-        }
-      }
     }
   }
-  .content {
-    width: 100%;
-    .banner-container {
-      height: 900px;
-      width: 100%;
-      background-repeat: no-repeat;
-      background-size: cover;
-      position: relative;
-      @include showDetails(banner);
+  .cols {
+    @include flex();
+    & * {
+      font-size: 13.5px;
+      margin: 8px 40px;
+      @include flex($direction: column);
+    }
 
-      .age-res {
-        position: absolute;
-        bottom: 300px;
-        right: 0;
-        color: $nav-item-default-color;
-        font-size: 20px;
-        border-left: 3px solid $nav-item-default-color;
-        padding: 10px 60px 10px 15px;
-        background: $light-transparent-bg;
-      }
-      .volume {
-        position: absolute;
-        bottom: 300px;
-        right: 130px;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        color: white;
-        border: 1px solid $nav-item-default-color;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: linear 0.2s;
-        font-size: 19px;
-        &:hover {
-          width: 43px;
-          height: 43px;
-          bottom: 297px;
-          right: 128px;
-          font-size: 21px;
-        }
-      }
-      // .banner-show-details {
-      //   position: absolute;
-      //   top: 250px;
-      //   left: 70px;
-      //   img {
-      //     width: 600px;
-      //     height: 240px;
-      //   }
-      //   .watch-para {
-      //     font-size: 18px;
-      //     color: white;
-      //   }
-      //   .banner-buttons-area {
-      //     color: white;
-      //     font-size: 18px;
-      //     font-weight: bold;
-      //     span {
-      //       padding: 15px 40px;
-      //       display: inline-block;
-      //       background-color: rgba(51, 51, 51, 0.4);
-      //       border-radius: 3px;
-      //       &:hover {
-      //         cursor: pointer;
-      //         color: black;
-      //         background-color: white;
-      //         transform: scale(1.05);
-      //       }
-      //       &:first-child:hover {
-      //         transition: transform 0.1s linear 0.2s;
-      //       }
-      //       i {
-      //         margin-right: 10px;
-      //       }
-      //     }
-      //   }
-      //   .banner-details {
-      //     width: 550px;
-      //     color: white;
-      //     line-height: 30px;
-      //     font-size: 20px;
-      //   }
-      // }
-    }
-    .popular-container {
-      position: absolute;
-      top: 710px;
-      width: 100%;
-      h2 {
-        color: white;
-        margin-left: 60px;
-        margin-bottom: -60px;
-      }
-      .popular-list {
-        display: flex;
-        overflow: hidden;
-        padding-top: 68px;
-        .popular-list-item {
-          width: 262px;
-          margin: 0 2px;
-          height: 137px;
-          flex: 1;
-          position: relative;
-          transition: 0.3s linear;
-          img {
-            width: 100%;
-            height: 100%;
-          }
-          &:hover {
-            transition-delay: 0.5s;
-            flex: 2;
-            height: 274px;
-            transform: translateY(-68px);
-          }
-          &:hover .hover-content {
-            transition-delay: 0.7s;
-            opacity: 1;
-          }
-        }
-        .arrow {
-          width: 50px;
-          height: 137px;
-          background: $light-transparent-bg;
-          color: white;
-          font-size: 20px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          i {
-            display: none;
-            transition: 0.2s linear;
-            transform: scale(1.2, 1.8);
-          }
-          &:hover i {
-            transform: scale(1.4, 2.2);
-          }
-        }
-        &:hover {
-          cursor: pointer;
-        }
-        &:hover i {
-          display: initial;
-        }
-        &:hover .arrow {
-          background: $dark-transparent-bg;
-        }
-      }
-    }
-  }
-  .trending-area {
-    width: 100%;
-    h2 {
-      color: white;
-      margin: 60px 60px -60px;
-    }
-    .trending-list {
-      display: flex;
-      overflow: hidden;
-      padding-top: 68px;
-      padding-bottom: 68px;
-      .trending-list-item {
-        width: 262px;
-        margin: 0 2px;
-        height: 137px;
-        flex: 1;
-        position: relative;
-        transition: 0.3s linear;
-        z-index: 1;
-        img {
-          width: 100%;
-          height: 100%;
-        }
-        &:hover {
-          transition-delay: 0.5s;
-          flex: 2;
-          height: 274px;
-          transform: translateY(-68px);
-          margin-bottom: -120px;
-          z-index: 10;
-        }
-        &:hover .hover-content {
-          transition-delay: 0.7s;
-          opacity: 1;
-        }
-      }
-      .arrow {
-        width: 50px;
-        height: 137px;
-        background: $light-transparent-bg;
-        color: white;
-        font-size: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        i {
-          display: none;
-          transition: 0.2s linear;
-          transform: scale(1.2, 1.8);
-        }
-        &:hover i {
-          transform: scale(1.4, 2.2);
-        }
-      }
+    .service-code {
+      margin-top: 20px;
+      display: inline-block;
+      border: 1px solid $user-name-color;
+      text-align: center;
+      padding: 6px;
       &:hover {
         cursor: pointer;
-      }
-      &:hover i {
-        display: initial;
-      }
-      &:hover .arrow {
-        background: $dark-transparent-bg;
-      }
-    }
-  }
-
-  .featured-show-area-wrapper {
-    width: 100%;
-    position: relative;
-    background-size: cover;
-    height: 600px;
-    background: linear-gradient(
-        0deg,
-        #141414 0%,
-        rgba(10, 10, 10, 0.75) 50%,
-        rgba(20, 20, 20, 1) 100%
-      ),
-      url("assets/images/featured-bg.webp");
-
-    .featured-show-area {
-      display: flex;
-      width: 92%;
-      margin: 0 auto;
-      height: 100%;
-      .featured-video-container {
-        width: 58%;
-        height: 100%;
-        z-index: 1;
-        video {
-          height: 100%;
-          width: 100%;
-        }
-      }
-      .featured-show-details-container {
-        width: 32%;
-        position: relative;
-        .featured-show-details {
-          position: absolute;
-          top: 120px;
-          left: 60px;
-          img {
-            width: 400px;
-            height: 150px;
-          }
-          .watch-para {
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-          }
-          .featured-buttons-area {
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            span {
-              padding: 15px 40px;
-              margin-left: 8px;
-              display: inline-block;
-              background-color: rgba(51, 51, 51, 0.4);
-              border-radius: 3px;
-              &:hover {
-                cursor: pointer;
-                color: black;
-                background-color: white;
-                transform: scale(1.05);
-              }
-              &:first-child:hover {
-                transition: transform 0.1s linear 0.2s;
-              }
-              i {
-                margin-right: 10px;
-              }
-            }
-          }
-          .featured-details {
-            width: 400px;
-            color: white;
-            line-height: 30px;
-            font-size: 20px;
-          }
-        }
-      }
-    }
-  }
-  .originals-area {
-    width: 100%;
-    margin-top: 20px;
-    h2 {
-      color: white;
-      margin: 0px 0px -60px 60px;
-    }
-
-    .originals-list {
-      display: flex;
-      overflow: hidden;
-      padding-top: 68px;
-      padding-bottom: 68px;
-      .originals-list-item {
-        width: 262px;
-        height: 630px;
-        margin: 0 2px;
-        flex: 4;
-        position: relative;
-        transition: 0.3s linear;
-        z-index: 1;
-        img {
-          width: 100%;
-          height: 100%;
-        }
-        &:hover {
-          transition-delay: 0.5s;
-          flex: 5;
-          height: 50%;
-          transform: translateY(-40px);
-          margin-bottom: -120px;
-          height: 700px;
-          z-index: 10;
-        }
-        .hover-content {
-          bottom: 20px;
-        }
-        &:hover .hover-content {
-          transition-delay: 0.7s;
-          opacity: 1;
-        }
-      }
-      .arrow {
-        width: 50px;
-        height: 630px;
-        background: $light-transparent-bg;
         color: white;
-        font-size: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        i {
-          display: none;
-          transition: 0.2s linear;
-          transform: scale(1.2, 1.8);
-        }
-        &:hover i {
-          transform: scale(1.4, 2.2);
-        }
-      }
-      &:hover {
-        cursor: pointer;
-      }
-      &:hover i {
-        display: initial;
-      }
-      &:hover .arrow {
-        background: $dark-transparent-bg;
+        border-color: white;
       }
     }
   }
-
-  footer {
-    display: flex;
-    padding-top: 80px;
-    flex-direction: column;
-    align-items: center;
-    color: $user-name-color;
-    .socials {
-      align-self: flex-start;
-      margin-left: 355px;
-      margin-bottom: 5px;
-      & * {
-        font-size: 30px;
-        margin: 0 10px;
-      }
-    }
-    .cols {
-      display: flex;
-      & * {
-        font-size: 13.5px;
-        margin: 8px 40px;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .service-code {
-        margin-top: 20px;
-        display: inline-block;
-        border: 1px solid $user-name-color;
-        text-align: center;
-        padding: 6px 0px;
-        &:hover {
-          cursor: pointer;
-          color: white;
-          border-color: white;
-        }
-      }
-    }
-    .years {
-      color: grey;
-      font-size: 11px;
-      align-self: flex-start;
-      margin-left: 370px;
-      margin-bottom: 20px;
-    }
+  .years {
+    color: grey;
+    font-size: 11px;
+    align-self: flex-start;
+    margin-left: 285px;
+    margin-bottom: 20px;
   }
 }
 
 .hover-content {
-  display: flex;
-  position: absolute;
-  top: 120px;
-  left: 10px;
+  @include flex($justify-content: flex-end, $direction: column);
+  @include absolute($top: 120px, $left: 10px);
   color: white;
-  flex-direction: column;
-  justify-content: flex-end;
   width: 100%;
   transition: 0.01s linear 0s;
   opacity: 0;
@@ -734,9 +541,7 @@ body.main {
     color: red;
     border: 1px solid $nav-item-default-color;
     background-color: $light-transparent-bg;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex($justify-content: center, $align-items: center);
     transition: linear 0.2s;
     font-size: 19px;
     &:hover {
@@ -752,9 +557,7 @@ body.main {
     color: white;
     border: 1px solid $user-name-color;
     background-color: $light-transparent-bg;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex($justify-content: center, $align-items: center);
     transition: linear 0.2s;
     font-size: 17px;
     &:hover {
@@ -785,8 +588,6 @@ body.main {
     transform: scale(3.5, 1.5);
   }
   .show-icons {
-    position: absolute;
-    right: 30px;
-    top: -50px;
+    @include absolute($top: -50px, $right: 30px);
   }
 }

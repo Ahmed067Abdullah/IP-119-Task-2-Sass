@@ -1,0 +1,172 @@
+html {
+  height: 100%;
+}
+
+body.landing {
+  background-color: #141414;
+  font-family: Helvetica, Arial, sans-serif;
+  height: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+}
+
+.logo-container {
+  position: absolute;
+  top: 10px;
+  left: 50px;
+  cursor: pointer;
+}
+
+.logo-container a {
+  font-size: 2vw;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #e50914;
+  text-decoration: none;
+}
+
+@media (max-width: 968px) {
+  .logo-container {
+    top: 0;
+    left: 3%;
+    font-size: 22px;
+  }
+}
+
+p {
+  color: white;
+  font-size: 3.5vw;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  p {
+    font-size: 30px;
+  }
+}
+
+.users-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 90%;
+}
+
+.user-area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0px 10px 0;
+}
+
+@media (max-width: 594px) {
+  .user-area {
+    margin-top: 15px;
+  }
+}
+
+.user-area .user-img-area {
+  height: 10vw;
+  width: 10vw;
+  max-height: 200px;
+  max-width: 200px;
+  min-height: 84px;
+  min-width: 84px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 4px solid #1f1f1f;
+}
+
+.user-area .user-img-area img {
+  width: 100%;
+  height: 100%;
+}
+
+.user-area .user-name-area {
+  margin-top: 10px;
+  font-size: 1.3vw;
+  color: grey;
+}
+
+@media (max-width: 768px) {
+  .user-area .user-name-area {
+    font-size: 14px;
+  }
+}
+
+.user-area:hover .user-img-area {
+  border-color: white;
+}
+
+.user-area:hover .user-name-area {
+  color: white;
+}
+
+.manage-button {
+  padding: 0;
+  border: 1px solid grey;
+  margin-top: 100px;
+  width: 215px;
+  color: grey;
+  height: 25px;
+  padding: 0.5em 1.5em;
+  letter-spacing: 2px;
+  cursor: pointer;
+  font-size: 1.2em;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.manage-button:hover {
+  border-color: white;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .manage-button {
+    width: 168px;
+    font-size: 0.9em;
+    height: 17px;
+  }
+}
+
+@media (max-width: 365px) {
+  .manage-button {
+    width: 145px;
+    font-size: 0.75em;
+    height: 14px;
+  }
+}
+/*# sourceMappingURL=index.css.map */

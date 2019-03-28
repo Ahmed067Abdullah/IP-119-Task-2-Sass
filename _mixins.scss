@@ -1,0 +1,19 @@
+@mixin reset {
+  padding: 0;
+  margin: 0;
+}
+
+@mixin flex($justify-content: null, $align-items: null, $direction: null) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+  flex-direction: $direction;
+}
+
+@mixin absolute($top: null, $right: null, $bottom: null, $left: null) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
