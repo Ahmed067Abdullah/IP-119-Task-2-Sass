@@ -7,17 +7,11 @@ $nav-item-default-color: #e5e5e5;
 $nav-item-hover-color: #aeaeae;
 $dark-transparent-bg: rgba(10, 10, 10, 0.85);
 $light-transparent-bg: rgba(51, 51, 51, 0.6);
+$match-color: #46d369;
 
 @mixin reset {
   padding: 0;
   margin: 0;
-}
-
-@mixin overlay($top, $left) {
-  position: absolute;
-  top: $top;
-  left: $left;
-  background-color: $dark-transparent-bg;
 }
 
 @mixin showDetails($area) {
@@ -39,6 +33,7 @@ $light-transparent-bg: rgba(51, 51, 51, 0.6);
       font-weight: bold;
       span {
         padding: 15px 40px;
+        margin-left: 8px;
         display: inline-block;
         background-color: rgba(51, 51, 51, 0.4);
         border-radius: 3px;
@@ -421,6 +416,10 @@ body.main {
             height: 274px;
             transform: translateY(-68px);
           }
+          &:hover .hover-content {
+            transition-delay: 0.7s;
+            opacity: 1;
+          }
         }
         .arrow {
           width: 50px;
@@ -483,6 +482,10 @@ body.main {
           margin-bottom: -120px;
           z-index: 10;
         }
+        &:hover .hover-content {
+          transition-delay: 0.7s;
+          opacity: 1;
+        }
       }
       .arrow {
         width: 50px;
@@ -519,12 +522,14 @@ body.main {
     position: relative;
     background-size: cover;
     height: 600px;
-    .overlay {
-      @include overlay(0, 0);
-      width: 100%;
-      height: 100%;
-    }
-    background-image: url("assets/images/featured-bg.webp");
+    background: linear-gradient(
+        0deg,
+        #141414 0%,
+        rgba(10, 10, 10, 0.75) 50%,
+        rgba(20, 20, 20, 1) 100%
+      ),
+      url("assets/images/featured-bg.webp");
+
     .featured-show-area {
       display: flex;
       width: 92%;
@@ -591,9 +596,10 @@ body.main {
   }
   .originals-area {
     width: 100%;
+    margin-top: 20px;
     h2 {
       color: white;
-      margin: 0px 0px 6px -60px;
+      margin: 0px 0px -60px 60px;
     }
 
     .originals-list {
@@ -603,7 +609,7 @@ body.main {
       padding-bottom: 68px;
       .originals-list-item {
         width: 262px;
-        height : 630px;
+        height: 630px;
         margin: 0 2px;
         flex: 4;
         position: relative;
@@ -616,16 +622,23 @@ body.main {
         &:hover {
           transition-delay: 0.5s;
           flex: 5;
-          height : 50%;
+          height: 50%;
           transform: translateY(-40px);
           margin-bottom: -120px;
           height: 700px;
           z-index: 10;
         }
+        .hover-content {
+          bottom: 20px;
+        }
+        &:hover .hover-content {
+          transition-delay: 0.7s;
+          opacity: 1;
+        }
       }
       .arrow {
         width: 50px;
-        height : 630px;
+        height: 630px;
         background: $light-transparent-bg;
         color: white;
         font-size: 20px;
@@ -693,6 +706,87 @@ body.main {
     .years {
       color: grey;
       font-size: 11px;
+      align-self: flex-start;
+      margin-left: 370px;
+      margin-bottom: 20px;
     }
+  }
+}
+
+.hover-content {
+  display: flex;
+  position: absolute;
+  top: 120px;
+  left: 10px;
+  color: white;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  transition: 0.01s linear 0s;
+  opacity: 0;
+  & * {
+    margin: 2px 0;
+  }
+  .play {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: red;
+    border: 1px solid $nav-item-default-color;
+    background-color: $light-transparent-bg;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: linear 0.2s;
+    font-size: 19px;
+    &:hover {
+      width: 43px;
+      height: 43px;
+      font-size: 21px;
+    }
+  }
+  .circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    color: white;
+    border: 1px solid $user-name-color;
+    background-color: $light-transparent-bg;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: linear 0.2s;
+    font-size: 17px;
+    &:hover {
+      width: 38px;
+      height: 38px;
+      font-size: 18px;
+      border-color: white;
+    }
+  }
+  .show-name {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .match {
+    color: $match-color;
+  }
+  .age-restriction {
+    display: inline-block;
+    border: 1px solid white;
+    text-align: center;
+    padding: 3px 5px;
+  }
+  .fa-circle {
+    font-size: 7px;
+  }
+  .fa-chevron-down {
+    align-self: center;
+    transform: scale(3.5, 1.5);
+  }
+  .show-icons {
+    position: absolute;
+    right: 30px;
+    top: -50px;
   }
 }
