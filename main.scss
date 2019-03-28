@@ -21,8 +21,8 @@ body.main {
   top: 0;
   left: 0;
   width: 100%;
-  font-size: 14px;
-  color: $nav-item-default-color;
+
+  @include font($size: 14px, $color: $nav-item-default-color);
   background-color: transparent;
   height: 70px;
   z-index: 20;
@@ -36,14 +36,11 @@ body.main {
     }
     &:first-child {
       text-transform: uppercase;
-      color: $logo-color;
-      font-size: 24px;
-      font-weight: bold;
+      @include font($size: 24px, $color: $logo-color, $weight: bold);
       margin: 0 30px;
     }
     &:nth-child(2) {
-      color: white;
-      font-weight: bold;
+      @include font($color: white, $weight: bold);
     }
     &:last-child {
       margin-right: auto;
@@ -71,17 +68,16 @@ body.main {
 }
 
 .profile-dropdown {
+  @include absolute($top: 130%, $left: -40%);
+  @include flex($direction: column);
   visibility: hidden;
   width: 170px;
   background-color: $dark-transparent-bg;
   color: #fff;
   text-align: center;
   padding: 5px 0;
-  @include absolute($top: 130%, $left: -40%);
   z-index: 1;
   margin-left: -60px;
-  @include flex($direction: column);
-
   border: 0.1px solid $user-name-color;
   &::after {
     content: "";
@@ -92,14 +88,10 @@ body.main {
     border-color: transparent transparent white transparent;
   }
   .nav-user-container {
-    height: 35px;
-    width: 50px;
     @include flex($align-items: center);
+    @include image(70%, 100%);
+    @include widthHeight(50px, 35px);
     margin: 5px 0;
-    img {
-      height: 100%;
-      width: 70%;
-    }
   }
   .profiles-manage {
     box-sizing: border-box;
@@ -123,220 +115,67 @@ body.main {
 }
 
 .nav-image-container {
-  width: 35px;
-  height: 35px;
-  img {
-    width: 100%;
-    height: 100%;
-  }
+  @include widthHeight(35px, 35px);
+  @include image(100%, 100%);
 }
 
 .banner-container {
-  height: 900px;
-  width: 100%;
+  @include widthHeight(100%, 900px);
   position: relative;
   .banner-show-details {
     @include absolute($top: 250px, $left: 70px);
-    img {
-      width: 600px;
-      height: 240px;
-    }
-    .watch-para {
-      font-size: 18px;
-      color: white;
-    }
-    .banner-buttons-area {
-      color: white;
-      font-size: 18px;
-      font-weight: bold;
-      span {
-        padding: 15px 40px;
-        margin-left: 8px;
-        display: inline-block;
-        background-color: rgba(51, 51, 51, 0.4);
-        border-radius: 3px;
-        &:hover {
-          cursor: pointer;
-          color: black;
-          background-color: white;
-          transform: scale(1.05);
-        }
-        &:first-child:hover {
-          transition: transform 0.1s linear 0.2s;
-        }
-        i {
-          margin-right: 10px;
-        }
-      }
-    }
+    @include image(600px, 240px);
     .banner-details {
-      width: 550px;
-      color: white;
-      line-height: 30px;
-      font-size: 20px;
+      @include bannerDetails(550px);
     }
   }
 
   .age-res {
     @include absolute($right: 0px, $bottom: 300px);
-    color: $nav-item-default-color;
-    font-size: 20px;
+    @include font($color: $nav-item-default-color, $size: 20px);
     border-left: 3px solid $nav-item-default-color;
     padding: 10px 60px 10px 15px;
     background: $light-transparent-bg;
   }
   .volume {
-    @include absolute($right: 130px, $bottom: 300px);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    color: white;
-    border: 1px solid $nav-item-default-color;
-    @include flex($justify-content: center, $align-items: center);
-
-    transition: linear 0.2s;
-    font-size: 19px;
-    &:hover {
-      width: 43px;
-      height: 43px;
-      bottom: 297px;
-      right: 128px;
-      font-size: 21px;
-    }
+    @include icon();
   }
 }
 
 .popular-container {
   @include absolute($top: 710px);
   width: 100%;
-  h2 {
-    color: white;
-    margin-left: 60px;
-    margin-bottom: -60px;
-  }
+  @include h2();
   .popular-list {
     @include flex();
     overflow: hidden;
     padding-top: 68px;
     .popular-list-item {
-      width: 262px;
-      margin: 0 2px;
-      height: 137px;
-      flex: 1;
-      position: relative;
-      transition: 0.3s linear;
-      img {
-        width: 100%;
-        height: 100%;
-      }
-      &:hover {
-        transition-delay: 0.5s;
-        flex: 2;
-        height: 274px;
-        transform: translateY(-68px);
-      }
-      &:hover .hover-content {
-        transition-delay: 0.7s;
-        opacity: 1;
-      }
+      @include listItem();
     }
-    .arrow {
-      width: 50px;
-      height: 137px;
-      background: $light-transparent-bg;
-      color: white;
-      font-size: 20px;
-      @include flex($justify-content: center, $align-items: center);
-      i {
-        display: none;
-        transition: 0.2s linear;
-        transform: scale(1.2, 1.8);
-      }
-      &:hover i {
-        transform: scale(1.4, 2.2);
-      }
-    }
-    &:hover {
-      cursor: pointer;
-    }
-    &:hover i {
-      display: initial;
-    }
-    &:hover .arrow {
-      background: $dark-transparent-bg;
-    }
+    @include arrow(137px);
   }
 }
 
 .trending-area {
   width: 100%;
-  h2 {
-    color: white;
-    margin: 60px 60px -60px;
-  }
+  @include h2($margin-top: 60px, $margin-right: 60px);
   .trending-list {
     @include flex();
     overflow: hidden;
     padding-top: 68px;
     padding-bottom: 68px;
     .trending-list-item {
-      width: 262px;
-      margin: 0 2px;
-      height: 137px;
-      flex: 1;
-      position: relative;
-      transition: 0.3s linear;
-      z-index: 1;
-      img {
-        width: 100%;
-        height: 100%;
-      }
-      &:hover {
-        transition-delay: 0.5s;
-        flex: 2;
-        height: 274px;
-        transform: translateY(-68px);
-        margin-bottom: -120px;
-        z-index: 10;
-      }
-      &:hover .hover-content {
-        transition-delay: 0.7s;
-        opacity: 1;
-      }
+      @include listItem($margin-bottom: -120px);
     }
-    .arrow {
-      width: 50px;
-      height: 137px;
-      background: $light-transparent-bg;
-      color: white;
-      font-size: 20px;
-      @include flex($justify-content: center, $align-items: center);
-      i {
-        display: none;
-        transition: 0.2s linear;
-        transform: scale(1.2, 1.8);
-      }
-      &:hover i {
-        transform: scale(1.4, 2.2);
-      }
-    }
-    &:hover {
-      cursor: pointer;
-    }
-    &:hover i {
-      display: initial;
-    }
-    &:hover .arrow {
-      background: $dark-transparent-bg;
-    }
+    @include arrow(137px);
   }
 }
 
 .featured-show-area-wrapper {
-  width: 100%;
+  @include widthHeight(100%, 600px);
   position: relative;
   background-size: cover;
-  height: 600px;
   background: linear-gradient(
       0deg,
       #141414 0%,
@@ -348,18 +187,15 @@ body.main {
 
 .featured-show-area {
   @include flex();
-  width: 92%;
+  @include widthHeight(92%, 100%);
   margin: 0 auto;
-  height: 100%;
 }
 
 .featured-video-container {
-  width: 58%;
-  height: 100%;
+  @include widthHeight(58%, 100%);
   z-index: 1;
   video {
-    height: 100%;
-    width: 100%;
+    @include widthHeight(100%, 100%);
   }
 }
 .featured-show-details-container {
@@ -369,21 +205,14 @@ body.main {
 
 .featured-show-details {
   @include absolute($top: 120px, $left: 60px);
-  img {
-    width: 400px;
-    height: 150px;
-  }
+  @include image(400px, 150px);
 }
 
 .watch-para {
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
+  @include font($size: 18px, $color: white, $weight: bold);
 }
-.featured-buttons-area {
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
+.banner-buttons-area {
+  @include font($size: 18px, $color: white, $weight: bold);
   span {
     padding: 15px 40px;
     margin-left: 8px;
@@ -404,20 +233,15 @@ body.main {
     }
   }
 }
+
 .featured-details {
-  width: 400px;
-  color: white;
-  line-height: 30px;
-  font-size: 20px;
+  @include bannerDetails(400px);
 }
 
 .originals-area {
   width: 100%;
   margin-top: 20px;
-  h2 {
-    color: white;
-    margin: 0px 0px -60px 60px;
-  }
+  @include h2($margin-top: 0, $margin-right: 0);
 
   .originals-list {
     @include flex();
@@ -425,65 +249,24 @@ body.main {
     padding-top: 68px;
     padding-bottom: 68px;
     .originals-list-item {
-      width: 262px;
-      height: 630px;
-      margin: 0 2px;
-      flex: 4;
-      position: relative;
-      transition: 0.3s linear;
-      z-index: 1;
-      img {
-        width: 100%;
-        height: 100%;
-      }
-      &:hover {
-        transition-delay: 0.5s;
-        flex: 5;
-        height: 50%;
-        transform: translateY(-40px);
-        margin-bottom: -120px;
-        height: 700px;
-        z-index: 10;
-      }
+      @include listItem(
+        $flex: 4,
+        $height-before: 630px,
+        $height-after: 700px,
+        $translateY: -40px,
+        $margin-bottom: -120px
+      );
       .hover-content {
         bottom: 20px;
       }
-      &:hover .hover-content {
-        transition-delay: 0.7s;
-        opacity: 1;
-      }
     }
-    .arrow {
-      width: 50px;
-      height: 630px;
-      background: $light-transparent-bg;
-      color: white;
-      font-size: 20px;
-      @include flex($justify-content: center, $align-items: center);
-      i {
-        display: none;
-        transition: 0.2s linear;
-        transform: scale(1.2, 1.8);
-      }
-      &:hover i {
-        transform: scale(1.4, 2.2);
-      }
-    }
-    &:hover {
-      cursor: pointer;
-    }
-    &:hover i {
-      display: initial;
-    }
-    &:hover .arrow {
-      background: $dark-transparent-bg;
-    }
+    @include arrow(630px);
   }
 }
 
 footer {
-  padding-top: 80px;
   @include flex($align-items: center, $direction: column);
+  padding-top: 80px;
   color: $user-name-color;
   .socials {
     align-self: flex-start;
@@ -516,8 +299,7 @@ footer {
     }
   }
   .years {
-    color: grey;
-    font-size: 11px;
+    @include font($size: 11px, $color: grey);
     align-self: flex-start;
     margin-left: 285px;
     margin-bottom: 20px;
@@ -535,41 +317,34 @@ footer {
     margin: 2px 0;
   }
   .play {
-    width: 40px;
-    height: 40px;
+    @include flex($justify-content: center, $align-items: center);
+    @include font($size: 19px, $color: red);
+    @include widthHeight(40px,40px);
     border-radius: 50%;
-    color: red;
     border: 1px solid $nav-item-default-color;
     background-color: $light-transparent-bg;
-    @include flex($justify-content: center, $align-items: center);
     transition: linear 0.2s;
-    font-size: 19px;
+
     &:hover {
-      width: 43px;
-      height: 43px;
+      @include widthHeight(43px,43px);
       font-size: 21px;
     }
   }
   .circle {
-    width: 35px;
-    height: 35px;
+    @include flex($justify-content: center, $align-items: center);
+    @include font($size: 17px, $color: white);
+    @include widthHeight(35px,35px);
     border-radius: 50%;
-    color: white;
     border: 1px solid $user-name-color;
     background-color: $light-transparent-bg;
-    @include flex($justify-content: center, $align-items: center);
     transition: linear 0.2s;
-    font-size: 17px;
     &:hover {
-      width: 38px;
-      height: 38px;
-      font-size: 18px;
-      border-color: white;
+      @include widthHeight(38px,38px);
+      @include font($size: 18px, $color: white);
     }
   }
   .show-name {
-    font-weight: bold;
-    font-size: 20px;
+    @include font($size: 20px, $weight: bold);
   }
   .match {
     color: $match-color;

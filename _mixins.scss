@@ -17,3 +17,117 @@
   bottom: $bottom;
   left: $left;
 }
+
+@mixin font($size: null, $weight: null, $color: white) {
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}
+
+@mixin widthHeight($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin arrow($height) {
+  .arrow {
+    @include widthHeight(50px, $height);
+    background: $light-transparent-bg;
+    color: white;
+    font-size: 20px;
+    @include flex($justify-content: center, $align-items: center);
+    i {
+      display: none;
+      transition: 0.2s linear;
+      transform: scale(1.2, 1.8);
+    }
+    &:hover i {
+      transform: scale(1.4, 2.2);
+    }
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  &:hover i {
+    display: initial;
+  }
+  &:hover .arrow {
+    background: $dark-transparent-bg;
+  }
+}
+
+@mixin image($width, $height) {
+  img {
+    @include widthHeight($width, $height);
+  }
+}
+
+@mixin h2(
+  $margin-top: null,
+  $margin-right: null,
+  $margin-bottom: -60px,
+  $margin-left: 60px
+) {
+  h2 {
+    color: white;
+    margin-top: $margin-top;
+    margin-right: $margin-right;
+    margin-bottom: $margin-bottom;
+    margin-left: $margin-left;
+  }
+}
+
+@mixin listItem(
+  $flex: 1,
+  $height-before: 137px,
+  $height-after: 274px,
+  $translateY: -68px,
+  $margin-bottom: null
+) {
+  @include image(100%, 100%);
+  @include widthHeight(262px, $height-before);
+  margin: 0 2px;
+  flex: $flex;
+  position: relative;
+  transition: 0.3s linear;
+  z-index: 1;
+  &:hover {
+    transition-delay: 0.5s;
+    flex: $flex + 1;
+    height: $height-after;
+    transform: translateY($translateY);
+    margin-bottom: $margin-bottom;
+    z-index: 10;
+  }
+  &:hover .hover-content {
+    transition-delay: 0.7s;
+    opacity: 1;
+  }
+}
+
+@mixin bannerDetails($width) {
+  width: $width;
+  color: white;
+  line-height: 30px;
+  font-size: 20px;
+}
+
+@mixin icon() {
+  @include absolute($right: 130px, $bottom: 300px);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+  border: 1px solid $nav-item-default-color;
+  @include flex($justify-content: center, $align-items: center);
+
+  transition: linear 0.2s;
+  font-size: 19px;
+  &:hover {
+    width: 43px;
+    height: 43px;
+    bottom: 297px;
+    right: 128px;
+    font-size: 21px;
+  }
+}
