@@ -1,0 +1,101 @@
+.nav-container {
+  @include flex($align-items: center);
+  @include font($size: 14px, $color: $nav-item-default-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  height: 70px;
+  z-index: 20;
+  transition: 0.5s linear;
+  span {
+    margin: 0 10px;
+    cursor: pointer;
+    transition: 0.2s linear;
+    &:hover {
+      color: $nav-item-hover-color;
+    }
+    &:first-child {
+      @include font($size: 24px, $color: $logo-color, $weight: bold);
+      text-transform: uppercase;
+      margin: 0 30px;
+    }
+    &:nth-child(2) {
+      @include font($color: white, $weight: bold);
+    }
+    &:last-child {
+      margin-right: auto;
+    }
+  }
+}
+
+.options {
+  @include flex($align-items: center);
+  margin: 0 30px 0 auto;
+  font-size: 16px;
+  & * {
+    margin: 0 10px;
+    cursor: pointer;
+  }
+}
+
+.profile-options {
+  @include flex($align-items: center);
+  position: relative;
+  &:hover .profile-dropdown {
+    visibility: visible;
+  }
+}
+
+.profile-dropdown {
+  @include absolute($top: 130%, $left: -40%);
+  @include flex($direction: column);
+  visibility: hidden;
+  width: 170px;
+  background-color: $dark-transparent-bg;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  z-index: 1;
+  margin-left: -60px;
+  border: 0.1px solid $user-name-color;
+  &::after {
+    content: "";
+    @include absolute($right: 21%, $bottom: 100%);
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+  }
+  .nav-user-container {
+    @include flex($align-items: center);
+    @include image(70%, 100%);
+    @include widthHeight(50px, 35px);
+    margin: 5px 0;
+  }
+  .profiles-manage {
+    box-sizing: border-box;
+    padding: 15px 10px;
+    text-align: left;
+    width: 100%;
+    justify-self: flex-start;
+    margin: auto 0;
+    border-bottom: 0.5px solid $user-name-color;
+  }
+  p {
+    margin: 5px 10px;
+    text-align: left;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .account {
+    margin-top: 15px;
+  }
+}
+
+.nav-image-container {
+  @include widthHeight(35px, 35px);
+  @include image(100%, 100%);
+}

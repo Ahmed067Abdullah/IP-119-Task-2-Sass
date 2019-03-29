@@ -1,0 +1,54 @@
+.hover-content {
+  @include flex($justify-content: flex-end, $direction: column);
+  @include absolute($top: 120px, $left: 10px);
+  color: white;
+  width: 100%;
+  transition: 0.01s linear 0s;
+  opacity: 0;
+  & * {
+    margin: 2px 0;
+  }
+  .play {
+    @include flex($justify-content: center, $align-items: center);
+    @include font($size: 19px, $color: red);
+    @include widthHeight(40px, 40px);
+    @include circle($light-transparent-bg, $nav-item-default-color);
+
+    &:hover {
+      @include widthHeight(43px, 43px);
+      font-size: 21px;
+    }
+  }
+  .circle {
+    @include flex($justify-content: center, $align-items: center);
+    @include font($size: 17px, $color: white);
+    @include widthHeight(35px, 35px);
+    @include circle($light-transparent-bg, $user-name-color);
+    &:hover {
+      @include widthHeight(38px, 38px);
+      @include font($size: 18px);
+    }
+  }
+  .show-name {
+    @include font($size: 20px, $weight: bold);
+  }
+  .match {
+    color: $match-color;
+  }
+  .age-restriction {
+    display: inline-block;
+    border: 1px solid white;
+    text-align: center;
+    padding: 3px 5px;
+  }
+  .fa-circle {
+    font-size: 7px;
+  }
+  .fa-chevron-down {
+    align-self: center;
+    transform: scale(3.5, 1.5);
+  }
+  .show-icons {
+    @include absolute($top: -50px, $right: 30px);
+  }
+}

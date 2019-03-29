@@ -1,0 +1,41 @@
+footer {
+  @include flex($align-items: center, $direction: column);
+  padding-top: 80px;
+  color: $user-name-color;
+  .socials {
+    align-self: flex-start;
+    margin-left: 275px;
+    margin-bottom: 5px;
+    & * {
+      font-size: 30px;
+      margin: 0 10px;
+    }
+  }
+  .cols {
+    @include flex();
+    & * {
+      font-size: 13.5px;
+      margin: 8px 40px;
+      @include flex($direction: column);
+    }
+
+    .service-code {
+      margin-top: 20px;
+      display: inline-block;
+      border: 1px solid $user-name-color;
+      text-align: center;
+      padding: 6px;
+      &:hover {
+        cursor: pointer;
+        color: white;
+        border-color: white;
+      }
+    }
+  }
+  .years {
+    @include font($size: 11px, $color: grey);
+    align-self: flex-start;
+    margin-left: 285px;
+    margin-bottom: 20px;
+  }
+}

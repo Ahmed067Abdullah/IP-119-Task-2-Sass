@@ -1,0 +1,176 @@
+@import "variables";
+@import "mixins";
+
+html {
+  height: 100%;
+}
+
+body.main {
+  @include reset;
+  background-color: $background-color;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.content {
+  width: 100%;
+}
+
+@import "navbar";
+
+.banner-container {
+  @include widthHeight(100%, 900px);
+  position: relative;
+  .banner-show-details {
+    @include absolute($top: 250px, $left: 70px);
+    @include image(600px, 240px);
+    .banner-details {
+      @include bannerDetails(550px);
+    }
+  }
+
+  .age-res {
+    @include absolute($right: 0px, $bottom: 300px);
+    @include font($color: $nav-item-default-color, $size: 20px);
+    border-left: 3px solid $nav-item-default-color;
+    padding: 10px 60px 10px 15px;
+    background: $light-transparent-bg;
+  }
+  .volume {
+    @include flex($justify-content: center, $align-items: center);
+    @include absolute($right: 130px, $bottom: 300px);
+    @include font($size: 19px, $color: white);
+    @include widthHeight(40px, 40px);
+    @include circle(transparent, $nav-item-default-color);
+    &:hover {
+      @include widthHeight(43px, 43px);
+      bottom: 297px;
+      right: 128px;
+      font-size: 21px;
+    }
+  }
+}
+
+.popular-container {
+  @include absolute($top: 710px);
+  width: 100%;
+  @include h2();
+  .popular-list {
+    @include flex();
+    overflow: hidden;
+    padding-top: 68px;
+    .popular-list-item {
+      @include listItem();
+    }
+    @include arrow(137px);
+  }
+}
+
+.trending-area {
+  width: 100%;
+  @include h2($margin-top: 60px, $margin-right: 60px);
+  .trending-list {
+    @include flex();
+    overflow: hidden;
+    padding-top: 68px;
+    padding-bottom: 68px;
+    .trending-list-item {
+      @include listItem($margin-bottom: -120px);
+    }
+    @include arrow(137px);
+  }
+}
+
+.featured-show-area-wrapper {
+  @include widthHeight(100%, 600px);
+  position: relative;
+  background-size: cover;
+  background: linear-gradient(
+      0deg,
+      #141414 0%,
+      rgba(10, 10, 10, 0.75) 50%,
+      rgba(20, 20, 20, 1) 100%
+    ),
+    url("../../assets/images/featured-bg.webp");
+}
+
+.featured-show-area {
+  @include flex();
+  @include widthHeight(92%, 100%);
+  margin: 0 auto;
+}
+
+.featured-video-container {
+  @include widthHeight(58%, 100%);
+  z-index: 1;
+  video {
+    @include widthHeight(100%, 100%);
+  }
+}
+.featured-show-details-container {
+  width: 32%;
+  position: relative;
+}
+
+.featured-show-details {
+  @include absolute($top: 120px, $left: 60px);
+  @include image(400px, 150px);
+}
+
+.watch-para {
+  @include font($size: 18px, $color: white, $weight: bold);
+}
+.banner-buttons-area {
+  @include font($size: 18px, $color: white, $weight: bold);
+  span {
+    padding: 15px 40px;
+    margin-left: 8px;
+    display: inline-block;
+    background-color: rgba(51, 51, 51, 0.4);
+    border-radius: 3px;
+    &:hover {
+      cursor: pointer;
+      color: black;
+      background-color: white;
+      transform: scale(1.05);
+    }
+    &:first-child:hover {
+      transition: transform 0.1s linear 0.2s;
+    }
+    i {
+      margin-right: 10px;
+    }
+  }
+}
+
+.featured-details {
+  @include bannerDetails(400px);
+}
+
+.originals-area {
+  width: 100%;
+  margin-top: 20px;
+  @include h2($margin-top: 0, $margin-right: 0);
+
+  .originals-list {
+    @include flex();
+    overflow: hidden;
+    padding-top: 68px;
+    padding-bottom: 68px;
+    .originals-list-item {
+      @include listItem(
+        $flex: 4,
+        $height-before: 630px,
+        $height-after: 700px,
+        $translateY: -40px,
+        $margin-bottom: -120px
+      );
+      .hover-content {
+        bottom: 20px;
+      }
+    }
+    @include arrow(630px);
+  }
+}
+
+@import "footer";
+@import "hover_content.scss";

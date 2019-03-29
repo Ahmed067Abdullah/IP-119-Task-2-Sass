@@ -20,12 +20,12 @@ body.main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  font-size: 14px;
+  color: #e5e5e5;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  font-size: 14px;
-  color: #e5e5e5;
   background-color: transparent;
   height: 70px;
   z-index: 20;
@@ -45,10 +45,10 @@ body.main {
 }
 
 .nav-container span:first-child {
-  text-transform: uppercase;
   font-size: 24px;
   font-weight: bold;
   color: #e50914;
+  text-transform: uppercase;
   margin: 0 30px;
 }
 
@@ -62,13 +62,13 @@ body.main {
 }
 
 .options {
-  margin: 0 30px 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin: 0 30px 0 auto;
   font-size: 16px;
 }
 
@@ -211,14 +211,6 @@ body.main {
 }
 
 .banner-container .volume {
-  position: absolute;
-  right: 130px;
-  bottom: 300px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  color: white;
-  border: 1px solid #e5e5e5;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -228,9 +220,18 @@ body.main {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  position: absolute;
+  right: 130px;
+  bottom: 300px;
+  font-size: 19px;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #e5e5e5;
+  background-color: transparent;
   -webkit-transition: linear 0.2s;
   transition: linear 0.2s;
-  font-size: 19px;
 }
 
 .banner-container .volume:hover {
@@ -444,8 +445,8 @@ body.main {
   height: 600px;
   position: relative;
   background-size: cover;
-  background: -webkit-gradient(linear, left bottom, left top, from(#141414), color-stop(50%, rgba(10, 10, 10, 0.75)), to(#141414)), url("assets/images/featured-bg.webp");
-  background: linear-gradient(0deg, #141414 0%, rgba(10, 10, 10, 0.75) 50%, #141414 100%), url("assets/images/featured-bg.webp");
+  background: -webkit-gradient(linear, left bottom, left top, from(#141414), color-stop(50%, rgba(10, 10, 10, 0.75)), to(#141414)), url("../../assets/images/featured-bg.webp");
+  background: linear-gradient(0deg, #141414 0%, rgba(10, 10, 10, 0.75) 50%, #141414 100%), url("../../assets/images/featured-bg.webp");
 }
 
 .featured-show-area {
